@@ -1,0 +1,12 @@
+name = "sovereign-blog"
+compatibility_date = "2026-04-12"
+
+[site]
+bucket = "./public"
+entry-point = "."
+
+# Build command for Cloudflare Pages
+# Command: hugo
+# Build output directory: public
+# Environment variables:
+#   HUGO_VERSION = "0.147.1"
