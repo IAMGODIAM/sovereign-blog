@@ -1,0 +1,36 @@
+{{- $pages := where .Site.RegularPages "Section" "posts" -}}
+{
+  "protocol": "sovereign-content/v1",
+  "publisher": {
+    "name": "E5 Enclave",
+    "domain": "e5enclave.com"
+  },
+  "generated": "{{ now.Format "2006-01-02T15:04:05Z07:00" }}",
+  "posts": [
+    {{- range $index, $page := $pages }}
+    {{- if $index }},{{ end }}
+    {
+      "id": "{{ .File.ContentBaseName }}",
+      "title": {{ .Title | jsonify }},
+      "published": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+      "author": {{ if .Params.author }}{{ .Params.author | jsonify }}{{ else }}"Israel Lee"{{ end }},
+      "series": {{ if .Params.series }}{{ .Params.series | jsonify }}{{ else }}""{{ end }},
+      "tags": {{ .Params.tags | default (slice) | jsonify }},
+      "summary": {{ .Summary | truncate 200 | plainify | jsonify }},
+      "content_url": "{{ .Permalink }}",
+      "ipfs_url": {{ if .Params.ipfs_hash }}{{ printf "ipfs://%s" .Params.ipfs_hash | jsonify }}{{ else }}""{{ end }},
+      "eden_tx": {{ if .Params.eden_tx }}{{ .Params.eden_tx | jsonify }}{{ else }}null{{ end }},
+      "access": {{ if .Params.access }}{{ .Params.access | jsonify }}{{ else }}"public"{{ end }},
+      "content_hash": "sha256:pending",
+      "word_count": {{ .WordCount }},
+      "reading_time": "{{ .ReadingTime }} min",
+      "agents": {
+        "can_index": true,
+        "can_reference": true,
+        "can_summarize": true,
+        "attribution_required": true
+      }
+    }
+    {{- end }}
+  ]
+}

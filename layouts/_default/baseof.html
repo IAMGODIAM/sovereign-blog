@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .Title }}{{ .Title }} — {{ end }}{{ .Site.Title }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ "index.xml" | absURL }}">
+    <link rel="stylesheet" href="{{ "css/style.css" | absURL }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ .Site.BaseURL }}" class="logo">E5</a>
+        <div class="nav-links">
+            <a href="{{ .Site.BaseURL }}">Posts</a>
+            <a href="{{ "index.xml" | absURL }}">RSS</a>
+            <a href="{{ "feed.json" | absURL }}">JSON Feed</a>
+        </div>
+    </nav>
+    <main>
+        {{ block "main" . }}{{ end }}
+    </main>
+    <footer>
+        <p>E5 Enclave — Sovereign Intelligence</p>
+        <p class="sub">israel@e5enclave.com | elvia@e5enclave.com</p>
+    </footer>
+</body>
+</html>

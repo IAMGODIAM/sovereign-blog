@@ -1,0 +1,30 @@
+{{ define "main" }}
+<article class="post">
+    <header>
+        <time>{{ .Date.Format "2006-01-02" }}</time>
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.author }}<p class="author">By {{ . }}</p>{{ end }}
+        {{ with .Params.series }}<p class="series">Series: {{ . }}</p>{{ end }}
+    </header>
+    
+    <div class="content">
+        {{ .Content }}
+    </div>
+    
+    <footer>
+        {{ with .Params.tags }}
+        <div class="tags">
+            {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
+        </div>
+        {{ end }}
+        
+        {{ with .Params.ipfs_hash }}
+        <p class="ipfs">Permanent: <a href="https://ipfs.io/ipfs/{{ . }}">IPFS</a></p>
+        {{ end }}
+        
+        {{ with .Params.eden_tx }}
+        <p class="eden">On-chain: <a href="https://eden.chain/tx/{{ . }}">{{ . | truncate 16 }}</a></p>
+        {{ end }}
+    </footer>
+</article>
+{{ end }}

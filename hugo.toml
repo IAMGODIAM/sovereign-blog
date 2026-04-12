@@ -1,0 +1,31 @@
+baseURL = "https://e5enclave.com/blog/"
+languageCode = "en-us"
+title = "E5 Enclave — Sovereign Intelligence"
+theme = ""
+
+[params]
+  description = "Building sovereign AI infrastructure. We don't rent intelligence."
+  author = "Israel Lee"
+  brand_color = "#00FF00"
+  
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS", "JSON"]
+
+[mediaTypes]
+  [mediaTypes."application/json"]
+    suffixes = ["json"]
+
+[outputFormats]
+  [outputFormats.RSS]
+    mediatype = "application/rss+xml"
+    baseName = "index"
+  [outputFormats.JSON]
+    mediatype = "application/json"
+    baseName = "feed"
+    isPlainText = false
